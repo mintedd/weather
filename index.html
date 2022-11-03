@@ -6,8 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Quicksand:wght@500&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"/>
 </head>
 
 <body>
@@ -15,35 +23,59 @@
     <header>
         <h1>Weather Dashboard</h1>
     </header>
-    <main>
+    <main class="container">
         <!-- side bar -->
-        <div >
-            <h3 class="search-header">Search for City:</h3>
-            <form id="search-form">
-                <input id="search-input" type="text">
-                <button class="btn">Search</button>
-            </form>
+        <div class="container">
+            <div>
+                <form id="search-form" class="row">
+                    <label for="city" class="form-label">
+                        <h3 class="search-header">Search for City:</h3>
+                    </label>
+                    <input id="search-input" class="form-control-sm" type="text">
+                    <button class="btn btn-primary">Search</button>
+                </form>
+            </div>
         </div>
         <div id="city-container">
             <!-- dynamically added city list -->
-            <div>test</div>
+            <div id="city-list">Cities</div>
         </div>
         <!-- box element -->
-        <div id="current-day"></div>
+        <div id="today" class="container">
+            <h3 class="row">City</h3>
+            <p class="col">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam maxime provident labore ut
+                nesciunt.
+                Rerum tempora, aut neque earum illo accusantium cumque nobis, illum ad, pariatur ea ipsum cum qui.</p>
+        </div>
 
         <!-- 5 day forecast -->
-        <div>
-            <h2>5-Day Forecast:</h2>
-            <div id="forecast">
+        <div class="container">
+            <h3>5-Day Forecast:</h3>
+            <div id="forecast" class="row">
                 <!-- dynamically added days -->
-                <div>sample</div>
+
+                <div class="col-auto"></div>
+                <div class="box">Day 1</div>
+
+                <div class="col-auto"></div>
+                <div class="box">Day 2</div>
+
+                <div class="col-auto"></div>
+                <div class="box">Day 3</div>
+
+                <div class="col-auto"></div>
+                <div class="box">Day 4</div>
+
+                <div class="col-auto"></div>
+                <div class="box">Day 5</div>
             </div>
         </div>
 
-        
     </main>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 

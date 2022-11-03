@@ -1,0 +1,16 @@
+header {
+    background-image: linear-gradient(to right, rgba(43, 53, 198, 0.742), rgb(117, 27, 201));
+    color: antiquewhite;
+    font-family: 'Amatic SC', bold cursive;
+    text-align: center;
+    padding: 2px;
+}
+
+h3 {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.box {
+    background-color: rgba(141, 141, 238, 0.367);
+    font-family: 'Quicksand', sans-serif;
+}
