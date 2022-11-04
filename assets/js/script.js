@@ -13,10 +13,27 @@ var searchBtnEl = $(".btn")
 
 function currentDay(){
    var today = moment().format("MMM Do YY");
-    $('#current-day').text(today) 
+    $('#today').text(today) 
 }
 
-// $(".btn").on('click', function())
-searchBtnEl.addEventListener('click', function(){
-    alert("its working");
+
+
+searchBtnEl.on('click', function(e){
+    e.preventDefault
+    var userInput = $('#search-input').val() 
+    localStorage.setItem('city', userInput) //user input is saving 
+    init(userInput);
+
 })
+// searchBtnEl.addEventListener('click', function(e){
+//     prompt("its working");
+// })
+
+function init(userInput) {
+    var city = localStorage.getItem(userInput)
+    console.log(userInput)
+    console.log(city)
+    if (userInput === city)
+    $('#city-list').append(city)
+}
+init();
