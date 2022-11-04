@@ -1,6 +1,9 @@
 // declare all id in html
 var search = document.getElementById('search-input')
 var searchBtnEl = document.getElementById('search-btn')
+var cityList = document.getElementById('city-list') //append from local storage
+var todaysWeather = document.getElementById('today') 
+var forecastList = document.getElementById('forecast')
 var weatherApiUrl = "https://api.openweathermap.org"
 var apiKey = '899885609b42fb1c311343820acf2670'
 // search btn activate an eventlistener 
