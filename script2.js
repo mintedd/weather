@@ -11,6 +11,8 @@ var apiKey = '899885609b42fb1c311343820acf2670'
 var formSubmit = function (e) {
     e.preventDefault()
     var userInput = search.value.trim()
+    // var cityList= JSON.parse(localStorage.getItem('city'));
+    // cityList.push(userInput)
     localStorage.setItem('city', userInput)
     if (userInput) {
         getCity(userInput)
@@ -88,23 +90,36 @@ var currentDay = function () {
 
 var todaysWeather = function (weatherStats) {
     document.getElementById('today').textContent = weatherStats.city.name
+    var iconCode = document.createElement('img')
+    var alertArea = document.getElementById('alert-area')
 
+    iconCode.setAttribute('src','http://openweathermap.org/img/wn/' + weatherStats.list[0].weather[0].icon + '@2x.png');
+    alertArea.append(iconCode)
+    var temperature = document.createElement('div')
+    temperature.textContent = weatherStats.list[0].main.temp + " F"
+    alertArea.append(temperature)
+    var wind = document.createElement('div')
+    wind.textContent = weatherStats.list[0].wind.speed + "MPH"
+    alertArea.append(wind)
+    var humidity = document.createElement('div')
+    humidity.textContent = weatherStats.list[0].main.humidity + "%"
+    alertArea.append(humidity)
     for (let i = 0; i < 5; i++) {
         var element = weatherStats[i];
         var iconCode = document.createElement('img')
-        var alertArea = document.getElementById('5Days')
+        var card = document.getElementById('card-'+(i+1))
+
         iconCode.setAttribute('src','http://openweathermap.org/img/wn/' + weatherStats.list[i].weather[0].icon + '@2x.png');
-        alertArea.append(iconCode)
+        card.append(iconCode)
         var temperature = document.createElement('div')
         temperature.textContent = weatherStats.list[i].main.temp + " F"
-        var alertArea = document.getElementById('alert-area')
-        alertArea.append(temperature)
+        card.append(temperature)
         var wind = document.createElement('div')
         wind.textContent = weatherStats.list[i].wind.speed + "MPH"
-        alertArea.append(wind)
+        card.append(wind)
         var humidity = document.createElement('div')
         humidity.textContent = weatherStats.list[i].main.humidity + "%"
-        alertArea.append(humidity)
+        card.append(humidity)
     }
 
 }
@@ -125,5 +140,13 @@ function init() {
     var btnEl = document.createElement('button')
     btnEl.textContent = city
     $('#city-list').append(btnEl)
+
+    btnEl.addEventListener('click',function(e){
+       var city = this.textContent
+       if (city) {
+        getCity(city)
+    }
+    })
+
 }
 init();
