@@ -36,11 +36,8 @@
                 </form>
                 <div id="city-container">
                     <!-- dynamically added city list saved in local storage -->
-                    <div id="city-list" class="col">
-                        <ul>
-                            <li>1</li>
-                            <li>1</li>
-                            <li>1</li>
+                    <div class="col">
+                        <ul id="city-list">
                         </ul>
                     </div>
 
@@ -49,62 +46,17 @@
             <!-- box element -->
             <div class="col-8">
                 <h3>
-                    <div id="today">
-                        City
-                    </div>
+                    <span id="today"></span>
+                    <span id="date"></span>
                 </h3>
-                <p id="alert-area">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam maxime provident
-                    labore ut
-                    nesciunt.
-                    Rerum tempora, aut neque earum illo accusantium cumque nobis, illum ad, pariatur ea ipsum cum qui.
-                </p>
-        </div>
-        <!-- 5 day forecast -->
+                <div id="alert-area"></div>
+            </div>
+            <!-- 5 day forecast -->
 
         </div>
-        <div class="container">
-            <div class="row justify-content-end">
-                <h3 class="col-8">5-Day Forecast:</h3>
-                <div class="card-deck col-8">
-                    <div class="card">
-                        <img src="" class="card-img-top" alt="...">
-                        <!--logo-->
-                        <div class="card-body">
-                            <h5 class="card-title">Date</h5>
-                            <p class="card-text">Temp, Wind, Humidity</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="" class="card-img-top" alt="...">
-                        <!--logo-->
-                        <div class="card-body">
-                            <h5 class="card-title">Date</h5>
-                            <p class="card-text">Temp, Wind, Humidity</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="" class="card-img-top" alt="...">
-                        <!--logo-->
-                        <div class="card-body">
-                            <h5 class="card-title">Date</h5>
-                            <p class="card-text">Temp, Wind, Humidity</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="" class="card-img-top" alt="...">
-                        <!--logo-->
-                        <div class="card-body">
-                            <h5 class="card-title">Date</h5>
-                            <p class="card-text">Temp, Wind, Humidity</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="" class="card-img-top" alt="...">
-                        <!--logo-->
-                        <div class="card-body">
-                            <h5 class="card-title">Date</h5>
-                            <p class="card-text">Temp, Wind, Humidity</p>
-                        </div>
+        <div id="5Days">
+
+        </div>
 
     </main>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>

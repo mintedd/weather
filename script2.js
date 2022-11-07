@@ -11,7 +11,7 @@ var apiKey = '899885609b42fb1c311343820acf2670'
 var formSubmit = function (e) {
     e.preventDefault()
     var userInput = search.value.trim()
-
+    localStorage.setItem('city', userInput)
     if (userInput) {
         getCity(userInput)
 
@@ -50,59 +50,80 @@ var getCity = function (userInput) {
 
 var fetchWeather = function (data) {
     var { lat, lon } = data
-    var city = data.city.name
-    var temp = data.list[0].main.temp
-    var humidity = data.list[0].main.humidity
-    var wind = data.list[0].wind.speed
-    var icon = data.list[0].weather[0].icon
-    var iconCode = 'http://openweathermap.org/img/wn/' + icon + '2x.png' //  linkButtonEl.setAttribute('href', resultObj.url);
     var apiUrl = `${weatherApiUrl}/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}&units=imperial`
-    console.log(weather)
-    console.log(apiUrl)
     fetch(apiUrl)
         .then(function (res) {
-            console.log(res.json())
-            return res.json();
+            return res.json()
+                .then(function (data) {
+                    console.log(data)
+                    var city = data.city.name
+                    console.log(city)
+                    var temp = data.list[0].main.temp
+                    console.log(temp)
+                    var humidity = data.list[0].main.humidity
+                    console.log(humidity)
+                    var wind = data.list[0].wind.speed
+                    console.log(wind)
+                    var icon = data.list[0].weather[0].icon
+                    console.log(icon)
+                    var iconCode = 'http://openweathermap.org/img/wn/' + icon + '@2x.png'
+                    if (!data) {
+                        alert('Location not found');
+                    } else {
+                        //appendToHistory(data);
+                        todaysWeather(data);
+                        console.log(todaysWeather)
+                    }
+                })
+                .catch(function (err) {
+                    console.error(err);
+                });
         })
-        .then(function (data) {
-            if (!data[0]) {
-                alert('Location not found');
-            } else {
-                //appendToHistory(location);
-                todaysWeather(data[0]);
-                console.log(todaysWeather)
-            }
-        })
-        .catch(function (err) {
-            console.error(err);
-        });
-
 }
 
-function init() {
+var currentDay = function () {
     var today = moment().format("MMM Do YY");
-    document.getElementById('today').textContent(today)
-    document.getElementById('today').append(today)
-    console.log
+    $('#date').text(today)
 }
 
-// var appendToHistory = function (){
+var todaysWeather = function (weatherStats) {
+    document.getElementById('today').textContent = weatherStats.city.name
 
-// }
+    for (let i = 0; i < 5; i++) {
+        var element = weatherStats[i];
+        var iconCode = document.createElement('img')
+        var alertArea = document.getElementById('5Days')
+        iconCode.setAttribute('src','http://openweathermap.org/img/wn/' + weatherStats.list[i].weather[0].icon + '@2x.png');
+        alertArea.append(iconCode)
+        var temperature = document.createElement('div')
+        temperature.textContent = weatherStats.list[i].main.temp + " F"
+        var alertArea = document.getElementById('alert-area')
+        alertArea.append(temperature)
+        var wind = document.createElement('div')
+        wind.textContent = weatherStats.list[i].wind.speed + "MPH"
+        alertArea.append(wind)
+        var humidity = document.createElement('div')
+        humidity.textContent = weatherStats.list[i].main.humidity + "%"
+        alertArea.append(humidity)
+    }
 
+}
 
-// var todaysWeather = function (fetchWeather) { //need current forecast
-//     if (fetchWeather.length === 0) {
-//         alertArea.textContent = "No Weather Found"
-//         return;
-//     }
-//     todaysWeather.textContent = fetchWeather
-
-//     // for (let i = 0; i < .length; i++) {
-//     //     var element = [i];
-
-//     // }
+var appendToHistory = function () {
+    if (fetchWeather.length === 0) {
+        alertArea.textContent = "No Weather Found"
+        return;
+    }
+    todaysWeather.textContent = fetchWeather
+}
 
 //need to parse 5 day forecast into separate boxes?
 searchBtnEl.addEventListener('click', formSubmit);
+function init() {
+    var city = localStorage.getItem('city')
+    console.log(city)
+    var btnEl = document.createElement('button')
+    btnEl.textContent = city
+    $('#city-list').append(btnEl)
+}
 init();
