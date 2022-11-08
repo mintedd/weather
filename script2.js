@@ -40,7 +40,6 @@ var getCity = function (userInput) {
                     if (!data[0]) {
                         alert('Location not found');
                     } else {
-                        //appendToHistory(userInput);
                         fetchWeather(data[0]);
                     }
                 })
@@ -72,7 +71,6 @@ var fetchWeather = function (data) {
                     if (!data) {
                         alert('Location not found');
                     } else {
-                        //appendToHistory(data);
                         todaysWeather(data);
                         console.log(todaysWeather)
                     }
@@ -124,17 +122,17 @@ var todaysWeather = function (weatherStats) {
 
 }
 
-var appendToHistory = function () {
-    if (fetchWeather.length === 0) {
-        alertArea.textContent = "No Weather Found"
-        return;
-    }
-    todaysWeather.textContent = fetchWeather
-}
+// var appendToHistory = function () {
+//     if (fetchWeather.length === 0) {
+//         alertArea.textContent = "No Weather Found"
+//         return;
+//     }
+//     todaysWeather.textContent = fetchWeather
+// }
 
 //need to parse 5 day forecast into separate boxes?
 searchBtnEl.addEventListener('click', formSubmit);
-function init() {
+var appendToHistory = function() {
     var city = localStorage.getItem('city')
     console.log(city)
     var btnEl = document.createElement('button')
@@ -149,4 +147,4 @@ function init() {
     })
 
 }
-init();
+appendToHistory()
